@@ -13,6 +13,9 @@ If you have some other more questions, checkout our [documentation](https://docs
 forums](https://discuss.streamlit.io).
 
 In the meantime, below is an example of what you can do with just a few lines of code:
+
+And check out:
+https://github.com/MichaelAllen1966/2109_streamlit_examples
 """
 
 
