@@ -3,6 +3,5 @@ pandas
 streamlit
 matplotlib
 datetime
-dateutil
 numpy
 bokeh
