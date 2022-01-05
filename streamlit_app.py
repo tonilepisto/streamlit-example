@@ -123,8 +123,8 @@ def process_file(file):
     dfc = a_1.columns
     st.write('Following columns imported:')
     st.write(dfc)
-    #a_1.to_csv('export.csv',index=False,header=True) #Removed exports !!!
-    #a_1.to_pickle('export.pkl')
+    a_1.to_csv('export.csv',index=False,header=True) #Removed exports !!!
+    a_1.to_pickle('export.pkl')
 
 
 if st.button('Read file to df'):
