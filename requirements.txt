@@ -1,3 +1,9 @@
 altair
 pandas
 streamlit
+math
+matplotlib
+datetime
+dateutil
+numpy
+bokeh
