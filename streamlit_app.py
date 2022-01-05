@@ -153,7 +153,8 @@ def draw_chart():
     #dfc = data.columns
     #st.write(dfc)
     data = data.set_index('Date')
-    source = data[['110: Effluent line TSS XT003','110: Effluent line pH sensor XT004']]
+    #source = data[['110: Effluent line TSS XT003','110: Effluent line pH sensor XT004']]
+    source = data['110: Effluent line pH sensor XT004']
     st.line_chart(source) #, width = 2000, height = 400)
 
 
