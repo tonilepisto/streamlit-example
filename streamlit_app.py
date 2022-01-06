@@ -177,7 +177,7 @@ def draw_chart():
     source = data[option]
     st.line_chart(source) #, width = 2000, height = 400)
 
-if data:
+if data():
     if st.button('Draw chart'):
         draw_chart()
  
