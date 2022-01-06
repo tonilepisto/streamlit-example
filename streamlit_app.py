@@ -120,6 +120,10 @@ if st.button('Read file to df'):
 #                              max_value=datetime.time(22, 0, 0, tzinfo=ny_zone),
 #                              step=datetime.timedelta(hours=1),
 #                              format='H:mm')
+if columnDisplay:
+    st.sidebar.write('Column display enabled')
+else:
+    st.sidebar.write('Column display enabled disabled')
 
 d5 = st.sidebar.date_input("date range with default", [datetime.date(2019, 7, 6), datetime.date(2019, 7, 8)])
 #st.write('Date range',d5)
