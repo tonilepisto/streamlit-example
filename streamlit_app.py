@@ -195,7 +195,7 @@ def draw_chart(option):
 
 option = st.selectbox(
     'Which data you want to use ?',
-    data['first column'])
+    data['columns'])
 'You selected: ', option
 
 if st.button('Draw chart'):
