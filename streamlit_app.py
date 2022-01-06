@@ -191,7 +191,7 @@ def draw_chart(option):
     source = data[option]
     st.line_chart(source) #, width = 2000, height = 400)
 
-selection = dfc[0].tolist()
+selection = dfc
 option = st.selectbox(
     'Which data you want to use ?',
      selection)
@@ -268,3 +268,20 @@ for i in range(100):
 #p.line(x, y, legend_label='Trend', line_width=2)
 
 #st.bokeh_chart(p, use_container_width=True)
+
+
+
+
+# initialize list of lists
+dataU = [['Le goumet', 10], ['The Alcove', 15], ['Mojo Restaurant', 14], ['Mojo Restaurant', 1]]
+
+# Create the pandas DataFrame
+df = pd.DataFrame(dataU, columns=['Name', 'ID'])
+
+values = df['Name'].tolist()
+options = df['ID'].tolist()
+dic = dict(zip(options, values))
+
+a = st.sidebar.selectbox('Choose a restaurant', options, format_func=lambda x: dic[x])
+
+st.write(a)
