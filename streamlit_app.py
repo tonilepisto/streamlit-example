@@ -164,6 +164,16 @@ if st.sidebar.button('Show times'):
 #st.write("Hello world! Here is slider that effects on draw output")
 #power = st.slider('Power', min_value=0, max_value=5, value=2)
 
+# Check if we have dataframe:
+try:
+    print data.head()
+# catch when df1 is None
+except AttributeError:
+    pass
+# catch when it hasn't even been defined
+except NameError:
+    pass
+
 def draw_chart():
     #data = pd.read_pickle('export.pkl') # created before
     #data = data.set_index('Date') #created before
