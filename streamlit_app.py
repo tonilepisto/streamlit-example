@@ -165,8 +165,10 @@ if st.sidebar.button('Show times'):
 #power = st.slider('Power', min_value=0, max_value=5, value=2)
 
 # Check if we have dataframe:
+dex = pd.DataFrame()
 try:
-    print data.head()
+    #print dex.head()
+    st.write(dfc)
 # catch when df1 is None
 except AttributeError:
     pass
