@@ -92,6 +92,7 @@ def process_file(file):
     a_1 = a_1[a_1.columns.drop(list(a_1.filter(regex='Reserve')))]
     dfc = a_1.columns
     dfc2 = pd.DataFrame(a_1.columns)
+    dfc2.rename(columns={dfc2.columns[0]:'names'}, inplace=True)
     if columnDisplay:
         st.write('Following columns imported:')
         st.write(dfc)
@@ -196,7 +197,7 @@ def draw_chart(option):
 
 option = st.selectbox(
     'Which data you want to use ?',
-    dfc2[0])
+    dfc2["names"])
     #"data['columns'])
 'You selected: ', option
 
