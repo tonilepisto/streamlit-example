@@ -102,6 +102,7 @@ def process_file(file):
     a_1.to_pickle('export.pkl')
     data = pd.read_pickle('export.pkl')
     data = data.set_index('Date')
+    dataWriteDone = True
 
 if st.checkbox('Show Columns'):
     columnDisplay = True
@@ -165,16 +166,15 @@ if st.sidebar.button('Show times'):
 #power = st.slider('Power', min_value=0, max_value=5, value=2)
 
 # Check if we have dataframe:
-dex = pd.DataFrame()
 try:
-    #print dex.head()
-    st.write(dfc)
+    #print df1.head()
+    st.write(data.head())
 # catch when df1 is None
 except AttributeError:
-    pass
+    dfError = True
 # catch when it hasn't even been defined
 except NameError:
-    pass
+    dfError = True
 
 def draw_chart():
     #data = pd.read_pickle('export.pkl') # created before
@@ -185,13 +185,13 @@ def draw_chart():
     source = data[option]
     st.line_chart(source) #, width = 2000, height = 400)
 
-if data is not None:
+if dataWriteDone == True:
     option = st.selectbox(
         'Which data you want to use ?',
         data['first column'])
     'You selected: ', option
 
-if data is not None:
+if dataWriteDone == True:
     if st.button('Draw chart'):
             draw_chart()
     
