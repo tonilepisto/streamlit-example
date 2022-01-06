@@ -194,7 +194,7 @@ def draw_chart(option):
     source = data[option]
     st.line_chart(source) #, width = 2000, height = 400)
 
-#dfc2 = []
+dfc2 = []
 option = st.selectbox(
     'Which data you want to use ?',
      dfc2)
