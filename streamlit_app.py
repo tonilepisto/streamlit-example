@@ -91,14 +91,9 @@ def process_file(file):
     a_1.rename(columns={a_1.columns[43]:'Reserve_43'}, inplace=True)
     a_1 = a_1[a_1.columns.drop(list(a_1.filter(regex='Reserve')))]
     dfc = a_1.columns
-    fdc2 = pd.DataFrame({
-        'names': a_1.columns })
-    #dfc2 = pd.DataFrame(a_1.columns)
-    #dfc2.rename(columns={dfc2.columns[0]:'names'}, inplace=True)
     if columnDisplay:
         st.write('Following columns imported:')
         st.write(dfc)
-
     #st.write('Following columns imported:')
     #st.write(dfc)
     a_1.to_csv('export.csv',index=False,header=True) #Removed exports !!!
@@ -197,9 +192,14 @@ def draw_chart(option):
     st.line_chart(source) #, width = 2000, height = 400)
 
 
+dfc2 = pd.DataFrame({
+    'first column': ['one', 'two', 'three', 'four'],
+    'second column': [10, 20, 30, 40]
+    })
+
 option = st.selectbox(
     'Which data you want to use ?',
-    dfc2["names"])
+    dfc2['names'])
     #"data['columns'])
 'You selected: ', option
 
