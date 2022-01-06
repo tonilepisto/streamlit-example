@@ -91,10 +91,14 @@ def process_file(file):
     a_1.rename(columns={a_1.columns[43]:'Reserve_43'}, inplace=True)
     a_1 = a_1[a_1.columns.drop(list(a_1.filter(regex='Reserve')))]
     dfc = a_1.columns
-    st.write('Following columns imported:')
-    st.write(dfc)
+    #st.write('Following columns imported:')
+    #st.write(dfc)
     a_1.to_csv('export.csv',index=False,header=True) #Removed exports !!!
     a_1.to_pickle('export.pkl')
+
+if st.checkbox('Show Columns'):
+    st.write('Following columns imported:')
+    st.write(dfc)
 
 
 if st.button('Read file to df'):
