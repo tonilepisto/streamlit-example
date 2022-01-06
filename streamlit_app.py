@@ -191,7 +191,7 @@ def draw_chart(option):
     source = data[option]
     st.line_chart(source) #, width = 2000, height = 400)
 
-selection = dfc
+selection = pd.dfc
 option = st.selectbox(
     'Which data you want to use ?',
      selection)
