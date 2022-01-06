@@ -13,12 +13,6 @@ from dateutil import tz
 import time
 from bokeh.plotting import figure
 
-
-data = pd.DataFrame({
-    'first column': [1, 2, 3, 4],
-    'second column': [10, 20, 30, 40]
-    })
-
 """
 # Welcome to Data app
 
@@ -177,9 +171,17 @@ try:
     st.write(data.head())
 # catch when df1 is None
 except AttributeError:
+    data = pd.DataFrame({
+    'first column': [1, 2, 3, 4],
+    'second column': [10, 20, 30, 40]
+    })
     dfError = True
 # catch when it hasn't even been defined
 except NameError:
+    data = pd.DataFrame({
+    'first column': [1, 2, 3, 4],
+    'second column': [10, 20, 30, 40]
+    })
     dfError = True
 
 def draw_chart():
