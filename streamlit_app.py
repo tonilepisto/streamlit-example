@@ -177,10 +177,9 @@ def draw_chart():
     source = data[option]
     st.line_chart(source) #, width = 2000, height = 400)
 
-if data():
-    if st.button('Draw chart'):
+if st.button('Draw chart'):
         draw_chart()
- 
+    
 df1 = pd.DataFrame(
     np.random.randn(50, 20),
     columns=('col %d' % i for i in range(20)))
