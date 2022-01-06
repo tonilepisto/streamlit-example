@@ -13,8 +13,8 @@ from dateutil import tz
 import time
 from bokeh.plotting import figure
 
-if dataWriteDone != True:
-    dftest = pd.DataFrame({
+
+data = pd.DataFrame({
     'first column': [1, 2, 3, 4],
     'second column': [10, 20, 30, 40]
     })
