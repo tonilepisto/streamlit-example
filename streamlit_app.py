@@ -100,7 +100,6 @@ def process_file(file):
     #st.write(dfc)
     a_1.to_csv('export.csv',index=False,header=True) #Removed exports !!!
     a_1.to_pickle('export.pkl')
-    file = ()
     data = pd.read_pickle('export.pkl')
     data = data.set_index('Date')
 
@@ -180,8 +179,9 @@ if data is not None:
         data['first column'])
     'You selected: ', option
 
-if st.button('Draw chart'):
-        draw_chart()
+if data is not None:
+    if st.button('Draw chart'):
+            draw_chart()
     
 df1 = pd.DataFrame(
     np.random.randn(50, 20),
