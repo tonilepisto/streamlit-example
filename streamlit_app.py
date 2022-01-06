@@ -91,6 +91,7 @@ def process_file(file):
     a_1.rename(columns={a_1.columns[43]:'Reserve_43'}, inplace=True)
     a_1 = a_1[a_1.columns.drop(list(a_1.filter(regex='Reserve')))]
     dfc = a_1.columns
+    dfc.rename(columns={dfc.columns[0]:'Columns'}, inplace=True)
     if columnDisplay:
         st.write('Following columns imported:')
         st.write(dfc)
@@ -191,7 +192,7 @@ def draw_chart(option):
     source = data[option]
     st.line_chart(source) #, width = 2000, height = 400)
 
-selection = pd.DataFrame(dfc)
+selection = []
 option = st.selectbox(
     'Which data you want to use ?',
      selection)
