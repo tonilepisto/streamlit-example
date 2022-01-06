@@ -165,23 +165,22 @@ if st.sidebar.button('Show times'):
 #power = st.slider('Power', min_value=0, max_value=5, value=2)
 
 def draw_chart():
-    #data = pd.read_pickle('export.pkl') # created before
+    data = pd.read_pickle('export.pkl') # created before
+    data = data.set_index('Date') #created before
+    option = st.selectbox(
+        'Which data you want to use ?',
+        data['first column'])
+    'You selected: ', option
     #dfc = data.columns
     #st.write(dfc)
-    #data = data.set_index('Date') #created before
     #source = data[['110: Effluent line TSS XT003','110: Effluent line pH sensor XT004']]
     source = data[option]
     st.line_chart(source) #, width = 2000, height = 400)
 
-option = st.selectbox(
-    'Which data you want to use ?',
-     data['first column'])
-
-'You selected: ', option
-
-if st.button('Draw chart'):
-    draw_chart()
-
+if data:
+    if st.button('Draw chart'):
+        draw_chart()
+ 
 df1 = pd.DataFrame(
     np.random.randn(50, 20),
     columns=('col %d' % i for i in range(20)))
@@ -193,16 +192,16 @@ df2 = pd.DataFrame(
     columns=('col %d' % i for i in range(20)))
 
 
-dftest = pd.DataFrame({
-    'first column': [1, 2, 3, 4],
-    'second column': [10, 20, 30, 40]
-    })
+#dftest = pd.DataFrame({
+#    'first column': [1, 2, 3, 4],
+#    'second column': [10, 20, 30, 40]
+#    })
 
-option = st.selectbox(
-    'Which number do you like best?',
-     dftest['first column'])
+#option = st.selectbox(
+#    'Which number do you like best?',
+#     dftest['first column'])
 
-'You selected: ', option
+#'You selected: ', option
 
 
 left_column, right_column = st.columns(2)
