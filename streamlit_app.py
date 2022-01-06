@@ -121,9 +121,9 @@ if st.button('Read file to df'):
 #                              step=datetime.timedelta(hours=1),
 #                              format='H:mm')
 if columnDisplay:
-    st.sidebar.write('Column display enabled')
+    st.sidebar.write('Note: Column display enabled')
 else:
-    st.sidebar.write('Column display enabled disabled')
+    st.sidebar.write('Note: Column display disabled')
 
 d5 = st.sidebar.date_input("date range with default", [datetime.date(2019, 7, 6), datetime.date(2019, 7, 8)])
 #st.write('Date range',d5)
@@ -183,6 +183,18 @@ df1 = pd.DataFrame(
 df2 = pd.DataFrame(
     np.random.randn(50, 20),
     columns=('col %d' % i for i in range(20)))
+
+
+dftest = pd.DataFrame({
+    'first column': [1, 2, 3, 4],
+    'second column': [10, 20, 30, 40]
+    })
+
+option = st.selectbox(
+    'Which number do you like best?',
+     dftest['first column'])
+
+'You selected: ', option
 
 #my_table.add_rows(df2)
 
