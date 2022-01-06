@@ -166,27 +166,26 @@ if st.sidebar.button('Show times'):
 
 # Check if we have dataframe:
 dfError = False
-try:
-    #print df1.head()
-    st.write(data.head())
+#try:
+    #st.write(data.head())
 # catch when df1 is None
-except AttributeError:
-    data = pd.DataFrame({
-    'first column': [1, 2, 3, 4],
-    'second column': [10, 20, 30, 40]
-    })
-    dfError = True
+#except AttributeError:
+    #data = pd.DataFrame({
+    #'first column': [1, 2, 3, 4],
+    #'second column': [10, 20, 30, 40]
+    #})
+    #dfError = True
 # catch when it hasn't even been defined
-except NameError:
-    data = pd.DataFrame({
-    'first column': [1, 2, 3, 4],
-    'second column': [10, 20, 30, 40]
-    })
-    dfError = True
+#except NameError:
+    #data = pd.DataFrame({
+    #'first column': [1, 2, 3, 4],
+    #'second column': [10, 20, 30, 40]
+    #})
+    #dfError = True
 
-def draw_chart():
-    #data = pd.read_pickle('export.pkl') # created before
-    #data = data.set_index('Date') #created before
+def draw_chart(option):
+    data = pd.read_pickle('export.pkl') # created before
+    data = data.set_index('Date') #created before
     #dfc = data.columns
     #st.write(dfc)
     #source = data[['110: Effluent line TSS XT003','110: Effluent line pH sensor XT004']]
@@ -200,7 +199,7 @@ option = st.selectbox(
 'You selected: ', option
 
 if st.button('Draw chart'):
-        draw_chart()
+        draw_chart(option)
     
 df1 = pd.DataFrame(
     np.random.randn(50, 20),
