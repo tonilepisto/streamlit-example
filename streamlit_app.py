@@ -91,8 +91,10 @@ def process_file(file):
     a_1.rename(columns={a_1.columns[43]:'Reserve_43'}, inplace=True)
     a_1 = a_1[a_1.columns.drop(list(a_1.filter(regex='Reserve')))]
     dfc = a_1.columns
-    dfc2 = pd.DataFrame(a_1.columns)
-    dfc2.rename(columns={dfc2.columns[0]:'names'}, inplace=True)
+    fdc2 = pd.DataFrame({
+        'names': a_1.columns })
+    #dfc2 = pd.DataFrame(a_1.columns)
+    #dfc2.rename(columns={dfc2.columns[0]:'names'}, inplace=True)
     if columnDisplay:
         st.write('Following columns imported:')
         st.write(dfc)
@@ -213,6 +215,7 @@ df1 = pd.DataFrame(
 df2 = pd.DataFrame(
     np.random.randn(50, 20),
     columns=('col %d' % i for i in range(20)))
+
 
 
 #dftest = pd.DataFrame({
