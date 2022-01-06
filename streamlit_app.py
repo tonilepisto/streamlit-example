@@ -13,7 +13,12 @@ from dateutil import tz
 import time
 from bokeh.plotting import figure
 
-data = None
+if dataWriteDone != True:
+    dftest = pd.DataFrame({
+    'first column': [1, 2, 3, 4],
+    'second column': [10, 20, 30, 40]
+    })
+
 """
 # Welcome to Data app
 
@@ -166,6 +171,7 @@ if st.sidebar.button('Show times'):
 #power = st.slider('Power', min_value=0, max_value=5, value=2)
 
 # Check if we have dataframe:
+dfError = False
 try:
     #print df1.head()
     st.write(data.head())
@@ -185,15 +191,14 @@ def draw_chart():
     source = data[option]
     st.line_chart(source) #, width = 2000, height = 400)
 
-if dataWriteDone == True:
-    option = st.selectbox(
-        'Which data you want to use ?',
-        data['first column'])
-    'You selected: ', option
 
-if dataWriteDone == True:
-    if st.button('Draw chart'):
-            draw_chart()
+option = st.selectbox(
+    'Which data you want to use ?',
+    data['first column'])
+'You selected: ', option
+
+if st.button('Draw chart'):
+        draw_chart()
     
 df1 = pd.DataFrame(
     np.random.randn(50, 20),
