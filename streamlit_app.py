@@ -193,7 +193,7 @@ def draw_chart(option):
 
 
 dfc2 = pd.DataFrame({
-    'first column': ['one', 'two', 'three', 'four'],
+    'first column': [1, 2, 3, 4],
     'second column': [10, 20, 30, 40]
     })
 
