@@ -193,7 +193,8 @@ def draw_chart(option):
 
 
 dfc2 = pd.DataFrame({
-    'names': ['one', 'two', 'three', 'four'],
+    #'names': ['one', 'two', 'three', 'four'],
+    'names' : dfc,
     })
 
 option = st.selectbox(
