@@ -92,12 +92,11 @@ def process_file(file):
     a_1 = a_1[a_1.columns.drop(list(a_1.filter(regex='Reserve')))]
     dfc = a_1.columns
     #dfc2 = list(a_1)
-    #dfc2 = list(my_dataframe.columns.values)
+    dfc2 = list(a_1.columns.values)
     #dfc.rename(columns={dfc.columns[0]:'Columns'}, inplace=True)
     if columnDisplay:
         st.write('Following columns imported:')
         st.write(dfc)
-        st.write(dfc.type)
     #st.write('Following columns imported:')
     #st.write(dfc)
     a_1.to_csv('export.csv',index=False,header=True) #Removed exports !!!
