@@ -99,6 +99,7 @@ def process_file(file):
     #st.write(dfc)
     a_1.to_csv('export.csv',index=False,header=True) #Removed exports !!!
     a_1.to_pickle('export.pkl')
+    file = ()
 
 if st.checkbox('Show Columns'):
     columnDisplay = True
