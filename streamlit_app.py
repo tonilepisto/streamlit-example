@@ -13,6 +13,7 @@ from dateutil import tz
 import time
 from bokeh.plotting import figure
 
+data = None
 """
 # Welcome to Data app
 
@@ -165,17 +166,19 @@ if st.sidebar.button('Show times'):
 #power = st.slider('Power', min_value=0, max_value=5, value=2)
 
 def draw_chart():
-    data = pd.read_pickle('export.pkl') # created before
-    data = data.set_index('Date') #created before
-    option = st.selectbox(
-        'Which data you want to use ?',
-        data['first column'])
-    'You selected: ', option
+    #data = pd.read_pickle('export.pkl') # created before
+    #data = data.set_index('Date') #created before
     #dfc = data.columns
     #st.write(dfc)
     #source = data[['110: Effluent line TSS XT003','110: Effluent line pH sensor XT004']]
     source = data[option]
     st.line_chart(source) #, width = 2000, height = 400)
+
+if data is not None:
+    option = st.selectbox(
+        'Which data you want to use ?',
+        data['first column'])
+    'You selected: ', option
 
 if st.button('Draw chart'):
         draw_chart()
