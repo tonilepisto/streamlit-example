@@ -192,14 +192,9 @@ def draw_chart(option):
     st.line_chart(source) #, width = 2000, height = 400)
 
 
-dfc2 = pd.DataFrame({
-    #'names': ['one', 'two', 'three', 'four'],
-    'names' : data.columns,
-    })
-
 option = st.selectbox(
     'Which data you want to use ?',
-    dfc2['names'])
+     data.columns)
     #"data['columns'])
 'You selected: ', option
 
