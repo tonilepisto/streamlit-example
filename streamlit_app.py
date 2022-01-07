@@ -87,9 +87,9 @@ if st.sidebar.button('Show times'):
 
 # Add a title
 st.title('Data to dataframe app')
-
+left_column, right_column = st.columns(2)
 # Upload csv
-file = st.file_uploader('Upload a CSV file')
+file = st.left_column.file_uploader('Upload a CSV file')
 
 # Process file
 #@st.cache
@@ -125,7 +125,7 @@ def process_file(file):
 
 
 
-if st.button('Read file to df'):
+if st.right_column.button('Read file to df'):
     process_file(file)
 
 
@@ -198,30 +198,6 @@ filtered = pickle.load(open_file)
 open_file.close()
 draw_chart(data,filtered)
 #selectedColumns = st.multiselect("Filter columns", options=list(result[1]), default=None)
-
-left_column, right_column = st.columns(2)
-# You can use a column just like st.sidebar:
-left_column.button('Press me!')
-
-# Or even better, call Streamlit functions inside a "with" block:
-with right_column:
-    chosen = st.radio(
-        'Sorting hat',
-        ("Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"))
-    st.write(f"You are in {chosen} house!")
-
-# Add a placeholder
-latest_iteration = st.empty()
-bar = st.progress(0)
-
-#for i in range(100):
-  # Update the progress bar with each iteration.
-  #latest_iteration.text(f'Iteration {i+1}')
-  #bar.progress(i + 1)
-  #time.sleep(0.1)
-
-
-#my_table.add_rows(df2)
 
 #chart_data = pd.DataFrame(
 #     np.random.randn(20, 3),
