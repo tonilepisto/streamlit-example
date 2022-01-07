@@ -194,6 +194,22 @@ open_file = open(file_name, "rb")
 filtered = pickle.load(open_file)
 open_file.close()
 draw_chart(data,filtered)
+
+#change colmun names manually (needs to be a function because pickle needs to be saved)
+with st.form(key="form"):
+        col_to_change = st.selectbox("Column to change", data.columns)
+        new_col_name = st.text_input("New name", value="")
+        submit_button = st.form_submit_button(label='Submit')
+
+if submit_button:
+    data = data.rename(columns={col_to_change: new_col_name})
+    data.to_pickle('export.pkl')
+
+
+
+
+
+
 #selectedColumns = st.multiselect("Filter columns", options=list(result[1]), default=None)
 
 #chart_data = pd.DataFrame(
@@ -230,7 +246,7 @@ dic = dict(zip(options, values))
 
 a = st.sidebar.selectbox('Choose a restaurant', options, format_func=lambda x: dic[x])
 
-st.write(a)
+st.sidebar.write(a)
 
 #@st.cache
 #def convert_df(df):
