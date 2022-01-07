@@ -157,7 +157,7 @@ def readDataColumns(selected):
     dataOut = data[selected]
     return dataOut, columnNames
 
-@st.cache
+
 def draw_chart():
     data = pd.read_pickle('export.pkl')
     data = data.set_index('Date')
@@ -205,7 +205,6 @@ bar = st.progress(0)
   #bar.progress(i + 1)
   #time.sleep(0.1)
 
-'...and now we\'re done!'
 
 #my_table.add_rows(df2)
 
