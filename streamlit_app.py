@@ -87,10 +87,8 @@ if st.sidebar.button('Show times'):
 
 # Add a title
 st.title('Data to dataframe app')
-left_column, right_column = st.columns(2)
 # Upload csv
-with left_column:
-    file = st.file_uploader('Upload a CSV file')
+file = st.file_uploader('Upload a CSV file')
 
 # Process file
 #@st.cache
@@ -123,9 +121,9 @@ def process_file(file):
     #data = data.set_index('Date')
     dataWriteDone = True
 
-with right_column:
-    if st.button('Read file to df'):
-        process_file(file)
+
+if st.button('Read file to df'):
+    process_file(file)
 
 
 
