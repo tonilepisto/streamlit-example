@@ -48,10 +48,10 @@ def process_file(file):
     for col in a_1.columns:
         if col != 'seconds':
             a_1.rename({a_1.columns[i]: 'Col'+str(i)}, axis=1, inplace=True)
-        else:
-            a_1['seconds'] = pd.to_datetime(a_1['seconds'],unit='s')
+        #else:
+            #a_1['seconds'] = pd.to_datetime(a_1['seconds'],unit='s')
         i = i +1
-    #a_1['seconds'] = pd.to_datetime(a_1['seconds'],unit='s')
+    a_1['seconds'] = pd.to_datetime(a_1['seconds'],unit='s')
     #a_1 = a_1[a_1.columns.drop(list(a_1.filter(regex='Reserve')))]
     dfc = a_1.columns
     #dfc2 = list(a_1)
@@ -255,8 +255,7 @@ st.write(a)
 def convert_df(df):
      # IMPORTANT: Cache the conversion to prevent computation on every rerun
      return df.to_csv().encode('utf-8')
-
-csv = convert_df(data)
+#csv = convert_df(data)
 
 st.download_button(
      label="Download data as CSV",
