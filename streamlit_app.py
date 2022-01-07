@@ -204,6 +204,7 @@ with st.form(key="form"):
 if submit_button:
     data = data.rename(columns={col_to_change: new_col_name})
     data.to_pickle('export.pkl')
+    data = readData()
 
 
 
