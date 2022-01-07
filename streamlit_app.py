@@ -32,6 +32,57 @@ https://www.youtube.com/watch?v=G9U4Uixssf0&t=3s
 #        """
 #st.markdown(hide_menu_style, unsafe_allow_html=True)
 
+####### Sidebar #######
+#ny_zone = tz.gettz('America/New_York')
+#cast_time = st.sidebar.slider('Cast Time:', value=datetime.time(0, 0, 0, tzinfo=ny_zone),
+#                              min_value=datetime.time(0, 0, 0, tzinfo=ny_zone),
+#                              max_value=datetime.time(22, 0, 0, tzinfo=ny_zone),
+#                              step=datetime.timedelta(hours=1),
+#                              format='H:mm')
+if columnDisplay:
+    st.sidebar.write('Note: Column display enabled')
+else:
+    st.sidebar.write('Note: Column display disabled')
+
+d5 = st.sidebar.date_input("date range with default", [datetime.date(2019, 7, 6), datetime.date(2019, 7, 8)])
+#st.write('Date range',d5)
+
+t0 = st.sidebar.time_input('Start time', datetime.time(9, 00))
+t1 = st.sidebar.time_input('End Time', datetime.time(12, 00))
+#st.write('From', t1, 'to', t2)     
+
+def calcTimes():
+    timeStart = datetime. datetime. combine(d5[0], t0)
+    timeEnd = datetime. datetime. combine(d5[1], t1)
+    st.sidebar.write('Time range selected: From', timeStart, 'to', timeEnd)
+    timeDiff = timeEnd - timeStart
+    st.sidebar.write('Duration:',timeDiff)
+
+if st.sidebar.button('Show times'):
+    calcTimes()
+
+#st.write("Hello world! Here is date time slider")
+#dateStart = st.sidebar.date_input('start date', datetime.date(2021,1,1))
+#st.write(dateStart)
+#dateEnd = st.sidebar.date_input('End date', datetime.date(2021,2,1))
+#st.write(dateEnd)
+
+#d3 = st.date_input("range, no dates", [])
+#st.write(d3)
+
+#d3 = st.date_input("Range, one date", [datetime.date(2019, 7, 6)])
+#st.write(d3)
+
+#d5 = st.date_input("date range with default", [datetime.date(2019, 7, 6), datetime.date(2019, 7, 8)])
+#st.write(d5)
+
+# Show a matplotlib chart based on user input
+#st.write("Hello world! Here is slider that effects on draw output")
+#power = st.slider('Power', min_value=0, max_value=5, value=2)
+
+####### Sidebar #######
+
+
 # Add a title
 st.title('Data to dataframe app')
 
@@ -83,54 +134,7 @@ if st.button('Read file to df'):
 
 #https://docs.streamlit.io/library/api-reference/widgets
 
-#ny_zone = tz.gettz('America/New_York')
-#cast_time = st.sidebar.slider('Cast Time:', value=datetime.time(0, 0, 0, tzinfo=ny_zone),
-#                              min_value=datetime.time(0, 0, 0, tzinfo=ny_zone),
-#                              max_value=datetime.time(22, 0, 0, tzinfo=ny_zone),
-#                              step=datetime.timedelta(hours=1),
-#                              format='H:mm')
-if columnDisplay:
-    st.sidebar.write('Note: Column display enabled')
-else:
-    st.sidebar.write('Note: Column display disabled')
 
-d5 = st.sidebar.date_input("date range with default", [datetime.date(2019, 7, 6), datetime.date(2019, 7, 8)])
-#st.write('Date range',d5)
-
-t0 = st.sidebar.time_input('Start time', datetime.time(9, 00))
-t1 = st.sidebar.time_input('End Time', datetime.time(12, 00))
-#st.write('From', t1, 'to', t2)     
-
-def calcTimes():
-    timeStart = datetime. datetime. combine(d5[0], t0)
-    timeEnd = datetime. datetime. combine(d5[1], t1)
-    st.sidebar.write('Time range selected: From', timeStart, 'to', timeEnd)
-    timeDiff = timeEnd - timeStart
-    st.sidebar.write('Duration:',timeDiff)
-
-if st.sidebar.button('Show times'):
-    calcTimes()
-
-#st.write("Hello world! Here is date time slider")
-#dateStart = st.sidebar.date_input('start date', datetime.date(2021,1,1))
-#st.write(dateStart)
-#dateEnd = st.sidebar.date_input('End date', datetime.date(2021,2,1))
-#st.write(dateEnd)
-
-#d3 = st.date_input("range, no dates", [])
-#st.write(d3)
-
-#d3 = st.date_input("Range, one date", [datetime.date(2019, 7, 6)])
-#st.write(d3)
-
-#d5 = st.date_input("date range with default", [datetime.date(2019, 7, 6), datetime.date(2019, 7, 8)])
-#st.write(d5)
-
-# Show a matplotlib chart based on user input
-#st.write("Hello world! Here is slider that effects on draw output")
-#power = st.slider('Power', min_value=0, max_value=5, value=2)
-
-# Check if we have dataframe:
 dfError = False
 #try:
     #st.write(data.head())
@@ -150,18 +154,21 @@ dfError = False
     #dfError = True
 
 @st.cache
-def readDataColumns(selected):
+def readData():
     data = pd.read_pickle('export.pkl')
     data = data.set_index('Date')
-    columnNames = data.columns
-    dataOut = data[selected]
-    return dataOut, columnNames
+    return data 
 
+@st.cache   
+def readColumns(data):
+     data = pd.read_pickle('export.pkl')
+     columnNames = data.columns
+     return columnNames
 
-def draw_chart():
-    data = pd.read_pickle('export.pkl')
-    data = data.set_index('Date')
-    filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
+@st.cache
+def draw_chart(data,filtered):
+    #data = pd.read_pickle('export.pkl')
+    #data = data.set_index('Date')
     #st.write(dfc)
     #source = data[['Col0','Col1']]
     source = data[filtered]
@@ -175,13 +182,13 @@ def draw_chart():
 #filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
 
 
-#st.write(data[filtered.mean()])
-
 if st.button('Draw chart'):
-        draw_chart()
+        draw_chart(filtered)
 
-#result = readDataColumns(selectedColumns)
-#draw_chart(result[0],selectedColumns)
+data = readData()
+columns = readColumns(data)
+filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
+draw_chart(data,filtered)
 #selectedColumns = st.multiselect("Filter columns", options=list(result[1]), default=None)
 
 left_column, right_column = st.columns(2)
