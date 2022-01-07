@@ -185,9 +185,13 @@ def draw_chart(data,filtered):
 
 data = readData()
 columns = readColumns(data)
-filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
+filterSelection = st.multiselect("Filter columns", options=list(data.columns), default=None)
 if st.button('Update filter to line chart'):
-    draw_chart(data,filtered)
+    filtered = filterSelection
+else:
+    filtered =[]
+    
+draw_chart(data,filtered)
 #selectedColumns = st.multiselect("Filter columns", options=list(result[1]), default=None)
 
 left_column, right_column = st.columns(2)
