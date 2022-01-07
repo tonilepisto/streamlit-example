@@ -149,20 +149,16 @@ dfError = False
     #dfError = True
 
 def draw_chart(option):
-    data = pd.read_pickle('export.pkl') # created before
-    data = data.set_index('Date') #created before
+    #data = pd.read_pickle('export.pkl') # created before
+    #data = data.set_index('Date') #created before
     #dfc = data.columns
     #st.write(dfc)
-    #source = data[['110: Effluent line TSS XT003','110: Effluent line pH sensor XT004']]
-    source = data[option]
+    source = data[['Col0','Col1']]
+    #source = data[option]
     st.line_chart(source) #, width = 2000, height = 400)
 
-dfc2 = []
-option = st.selectbox(
-    'Which data you want to use ?',
-     dfc2)
-    #"data['columns'])
-'You selected: ', option
+filtered = st.multiselect("Filter columns", options=list(data.columns), default=list(data.columns))
+st.write(df[filtered])
 
 if st.button('Draw chart'):
         draw_chart(option)
@@ -176,20 +172,6 @@ df1 = pd.DataFrame(
 df2 = pd.DataFrame(
     np.random.randn(50, 20),
     columns=('col %d' % i for i in range(20)))
-
-
-
-#dftest = pd.DataFrame({
-#    'first column': [1, 2, 3, 4],
-#    'second column': [10, 20, 30, 40]
-#    })
-
-#option = st.selectbox(
-#    'Which number do you like best?',
-#     dftest['first column'])
-
-#'You selected: ', option
-
 
 left_column, right_column = st.columns(2)
 # You can use a column just like st.sidebar:
