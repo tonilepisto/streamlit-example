@@ -188,8 +188,6 @@ columns = readColumns(data)
 filterSelection = st.multiselect("Filter columns", options=list(data.columns), default=None)
 if st.button('Update filter to line chart'):
     filtered = filterSelection
-else:
-    filtered =[]
     
 draw_chart(data,filtered)
 #selectedColumns = st.multiselect("Filter columns", options=list(result[1]), default=None)
