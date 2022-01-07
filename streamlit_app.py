@@ -39,6 +39,7 @@ st.title('Data to dataframe app')
 file = st.file_uploader('Upload a CSV file')
 
 # Process file
+@st.cache
 def process_file(file):
     #st.write(file)
     #df = pd.read_csv(file)
@@ -64,9 +65,10 @@ def process_file(file):
     #st.write(dfc)
     a_1.to_csv('export.csv',index=False,header=True) #Removed exports !!!
     a_1.to_pickle('export.pkl')
-    data = pd.read_pickle('export.pkl')
-    data = data.set_index('Date')
+    #data = pd.read_pickle('export.pkl')
+    #data = data.set_index('Date')
     dataWriteDone = True
+    return data
 
 if st.checkbox('Show Columns'):
     columnDisplay = True
@@ -75,7 +77,7 @@ else:
 
 
 if st.button('Read file to df'):
-    process_file(file)
+    data = process_file(file)
 
 
 
@@ -159,6 +161,7 @@ def draw_chart(option):
 
 # create some dataframe
 #dfFilter = pd.DataFrame({f"f_{i}": list(range(100)) for i in range(10)})
+
 filtered = st.multiselect("Filter columns", options=list(data.columns), default=list(data.columns))
 st.write(data[filtered])
 
