@@ -115,7 +115,7 @@ def process_file(file):
         st.write(dfc)
     #st.write('Following columns imported:')
     #st.write(dfc)
-    a_1.to_csv('export.csv',index=False,header=True) #Removed exports !!!
+    #a_1.to_csv('export.csv',index=False,header=True) #Removed exports !!!
     a_1.to_pickle('export.pkl')
     #data = pd.read_pickle('export.pkl')
     #data = data.set_index('Date')
@@ -149,7 +149,7 @@ dfError = False
     #})
     #dfError = True
 
-@st.cache
+#@st.cache
 def readData():
     data = pd.read_pickle('export.pkl')
     data = data.set_index('Date')
