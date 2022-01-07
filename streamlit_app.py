@@ -174,8 +174,7 @@ def draw_chart(data, selected):
 #filtered = st.multiselect("Filter columns", options=list(data.columns), default=list(data.columns))
 #filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
 
-filtered = st.multiselect("Filter columns", options=list(result[1]), default=None)
-selectedColumns = filtered
+
 #st.write(data[filtered.mean()])
 
 #if st.button('Draw chart'):
@@ -183,6 +182,7 @@ selectedColumns = filtered
 
 result = readDataColumns(selectedColumns)
 draw_chart(result[0],selectedColumns)
+selectedColumns = st.multiselect("Filter columns", options=list(result[1]), default=None)
 
 left_column, right_column = st.columns(2)
 # You can use a column just like st.sidebar:
