@@ -149,7 +149,7 @@ dfError = False
     #})
     #dfError = True
 
-#@st.cache
+@st.cache
 def readData():
     data = pd.read_pickle('export.pkl')
     data = data.set_index('Date')
