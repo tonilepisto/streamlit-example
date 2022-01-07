@@ -44,56 +44,18 @@ def process_file(file):
     #df = pd.read_csv(file)
     #file.to_csv ('fileX.csv', index = False, header=True)
     a_1 = pd.read_csv(file,delimiter=';',decimal=',')
-    a_1['seconds'] = pd.to_datetime(a_1['seconds'],unit='s')
-    a_1.rename(columns={a_1.columns[0]:'Reserve_0'}, inplace=True)
-    a_1.rename(columns={a_1.columns[1]:'Reserve_1'}, inplace=True)
-    a_1.rename(columns={a_1.columns[2]:'Reserve_2'}, inplace=True)
-    a_1.rename(columns={a_1.columns[3]:'Reserve_3'}, inplace=True)
-    a_1.rename(columns={a_1.columns[4]:'Reserve_4'}, inplace=True)
-    a_1.rename(columns={a_1.columns[5]:'105: MBBR tank 1 blower line pressure PIT701 bar'}, inplace=True)
-    a_1.rename(columns={a_1.columns[6]:'105: MBBR tank 2 blower line pressure PIT702 bar'}, inplace=True)
-    a_1.rename(columns={a_1.columns[7]:'105: MBBR tank 1 DO sensor XT001 mg/l'}, inplace=True)
-    a_1.rename(columns={a_1.columns[8]:'105: MBBR tank 2 DO sensor XT002 mg/g'}, inplace=True)
-    a_1.rename(columns={a_1.columns[9]:'MBBR tank 2 pH sensor XT101 pH'}, inplace=True)
-    a_1.rename(columns={a_1.columns[10]:'105: MBBR tank 1 temperature degC'}, inplace=True)
-    a_1.rename(columns={a_1.columns[11]:'105: MBBR tank 2 temperature degC'}, inplace=True)
-    a_1.rename(columns={a_1.columns[12]:'106: MBBR discharge line TSS sensor TSS001 mg/l'}, inplace=True)
-    a_1.rename(columns={a_1.columns[13]:'107: Polymer conentration unit A mg/l'}, inplace=True)
-    a_1.rename(columns={a_1.columns[14]:'107: Polymer conentration unit B mg/l'}, inplace=True)
-    a_1.rename(columns={a_1.columns[15]:'Reserve_15'})
-    a_1.rename(columns={a_1.columns[16]:'108: DAF1 recycling line pressure PT001 bar'}, inplace=True)
-    a_1.rename(columns={a_1.columns[17]:'108: DAF1 sludge discharge line pressure PT005 bar'}, inplace=True)
-    a_1.rename(columns={a_1.columns[18]:'Reserve_18'}, inplace=True)
-    a_1.rename(columns={a_1.columns[19]:'108: DAF2 recycling line pressure PT002 bar'}, inplace=True)
-    a_1.rename(columns={a_1.columns[20]:'108: DAF2 sludge discharge line pressure PT006 bar'}, inplace=True)
-    a_1.rename(columns={a_1.columns[21]:'Reserve_21'}, inplace=True)
-    a_1.rename(columns={a_1.columns[22]:'Reserve_22'}, inplace=True)
-    a_1.rename(columns={a_1.columns[23]:'110: Effluent line TSS XT003'})
-    a_1.rename(columns={a_1.columns[24]:'110: Effluent line pH sensor XT004'}, inplace=True)
-    a_1.rename(columns={a_1.columns[25]:'105: MBBR Blower KF007 PT100 temp'}, inplace=True)
-    a_1.rename(columns={a_1.columns[26]:'105: MBBR Blower KF009 PT100 temp'}, inplace=True)
-    a_1.rename(columns={a_1.columns[27]:'105: MBBR Blower KF008 PT100 temp'}, inplace=True)
-    a_1.rename(columns={a_1.columns[28]:'105: MBBR Blower KF006 PT100 temp'}, inplace=True)
-    a_1.rename(columns={a_1.columns[29]:'105: MBBR Blower KF009 Speed Hz'}, inplace=True)
-    a_1.rename(columns={a_1.columns[30]:'105: MBBR Blower KF009 Speed A'}, inplace=True)
-    a_1.rename(columns={a_1.columns[31]:'105: MBBR Blower KF008 Speed Hz'}, inplace=True)
-    a_1.rename(columns={a_1.columns[32]:'105: MBBR Blower KF008 Speed A'}, inplace=True)
-    a_1.rename(columns={a_1.columns[33]:'105: MBBR Blower KF007 Speed Hz'}, inplace=True)
-    a_1.rename(columns={a_1.columns[34]:'105: MBBR Blower KF007 Speed A'}, inplace=True)
-    a_1.rename(columns={a_1.columns[35]:'105: MBBR Blower KF006 Speed Hz'}, inplace=True)
-    a_1.rename(columns={a_1.columns[36]:'105: MBBR Blower KF006 Speed A'}, inplace=True)
-    a_1.rename(columns={a_1.columns[37]:'Reserve_37'}, inplace=True)
-    a_1.rename(columns={a_1.columns[38]:'Reserve_38'}, inplace=True)
-    a_1.rename(columns={a_1.columns[39]:'Reserve_39'}, inplace=True)
-    a_1.rename(columns={a_1.columns[40]:'Reserve_40'}, inplace=True)
-    a_1.rename(columns={a_1.columns[41]:'strTimeDate'}, inplace=True)
-    a_1.rename(columns={a_1.columns[42]:'Date'}, inplace=True)
-    a_1.rename(columns={a_1.columns[43]:'Reserve_43'}, inplace=True)
-    a_1 = a_1[a_1.columns.drop(list(a_1.filter(regex='Reserve')))]
+    i=0
+    for col in a_1.columns:
+        if col != 'seconds':
+            a_1.rename({a_1.columns[i]: 'Col'+str(i)}, axis=1, inplace=True)
+        else:
+            a_1['seconds'] = pd.to_datetime(a_1['seconds'],unit='s')
+        i = i +1
+    #a_1['seconds'] = pd.to_datetime(a_1['seconds'],unit='s')
+    #a_1 = a_1[a_1.columns.drop(list(a_1.filter(regex='Reserve')))]
     dfc = a_1.columns
     #dfc2 = list(a_1)
     dfc2 = list(a_1.columns.values)
-    #dfc.rename(columns={dfc.columns[0]:'Columns'}, inplace=True)
     if columnDisplay:
         st.write('Following columns imported:')
         st.write(dfc)
@@ -288,3 +250,17 @@ dic = dict(zip(options, values))
 a = st.sidebar.selectbox('Choose a restaurant', options, format_func=lambda x: dic[x])
 
 st.write(a)
+
+@st.cache
+ def convert_df(df):
+     # IMPORTANT: Cache the conversion to prevent computation on every rerun
+     return df.to_csv().encode('utf-8')
+
+csv = convert_df(data)
+
+st.download_button(
+     label="Download data as CSV",
+     data=csv,
+     file_name='large_df.csv',
+     mime='text/csv',
+ )
