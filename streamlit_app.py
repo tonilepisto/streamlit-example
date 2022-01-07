@@ -149,6 +149,7 @@ dfError = False
     #})
     #dfError = True
 
+
 def draw_chart(data, selected):
     #data = pd.read_pickle('export.pkl') # created before
     #data = data.set_index('Date') #created before
@@ -165,20 +166,10 @@ data = data.set_index('Date')
 #filtered = st.multiselect("Filter columns", options=list(data.columns), default=list(data.columns))
 filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
 selectedColumns = filtered
-st.write(data[filtered.mean()])
+#st.write(data[filtered.mean()])
 
 if st.button('Draw chart'):
         draw_chart(data,selectedColumns)
-    
-df1 = pd.DataFrame(
-    np.random.randn(50, 20),
-    columns=('col %d' % i for i in range(20)))
-
-#my_table = st.table(df1) 
-
-df2 = pd.DataFrame(
-    np.random.randn(50, 20),
-    columns=('col %d' % i for i in range(20)))
 
 left_column, right_column = st.columns(2)
 # You can use a column just like st.sidebar:
