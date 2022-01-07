@@ -45,11 +45,6 @@ if st.sidebar.checkbox('Show Columns'):
 else:
     columnDisplay = False
 
-if columnDisplay:
-    st.sidebar.write('Note: Column display enabled')
-else:
-    st.sidebar.write('Note: Column display disabled')
-
 d5 = st.sidebar.date_input("date range with default", [datetime.date(2019, 7, 6), datetime.date(2019, 7, 8)])
 #st.write('Date range',d5)
 
@@ -191,7 +186,8 @@ def draw_chart(data,filtered):
 data = readData()
 columns = readColumns(data)
 filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
-draw_chart(data,filtered)
+if st.button('Update filter to line chart'):
+    draw_chart(data,filtered)
 #selectedColumns = st.multiselect("Filter columns", options=list(result[1]), default=None)
 
 left_column, right_column = st.columns(2)
