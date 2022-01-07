@@ -256,11 +256,12 @@ st.write(a)
 def convert_df(df):
      # IMPORTANT: Cache the conversion to prevent computation on every rerun
      return df.to_csv().encode('utf-8')
-#csv = convert_df(data)
+
+csvExport = convert_df(data)
 
 st.download_button(
      label="Download data as CSV",
-     data=csv,
-     file_name='large_df.csv',
+     data=csvExport,
+     file_name='csvExport.csv',
      mime='text/csv',
  )
