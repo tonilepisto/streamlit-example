@@ -183,12 +183,14 @@ def draw_chart(data,filtered):
 
 #if st.button('Draw chart'):
         #draw_chart(filtered)
-
+file_name = 'filter.pkl'
 data = readData()
 columns = readColumns(data)
 filterSelection = st.multiselect("Filter columns", options=list(data.columns), default=None)
 if st.button('Update filter to line chart'):
-    filterSelection.to_pickle('filter.pkl')
+    open_file = open(file_name, "wb")
+    pickle.dump(sample_list, open_file)
+    open_file.close()
 
 filtered = pd.read_pickle('filter.pkl')    
 draw_chart(data,filtered)
