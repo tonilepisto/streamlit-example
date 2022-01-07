@@ -90,7 +90,7 @@ st.title('Data to dataframe app')
 left_column, right_column = st.columns(2)
 # Upload csv
 with left_column:
-file = st.file_uploader('Upload a CSV file')
+    file = st.file_uploader('Upload a CSV file')
 
 # Process file
 #@st.cache
