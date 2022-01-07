@@ -39,6 +39,12 @@ https://www.youtube.com/watch?v=G9U4Uixssf0&t=3s
 #                              max_value=datetime.time(22, 0, 0, tzinfo=ny_zone),
 #                              step=datetime.timedelta(hours=1),
 #                              format='H:mm')
+
+if st.sidebar.checkbox('Show Columns'):
+    columnDisplay = True
+else:
+    columnDisplay = False
+
 if columnDisplay:
     st.sidebar.write('Note: Column display enabled')
 else:
@@ -120,10 +126,7 @@ def process_file(file):
     #data = data.set_index('Date')
     dataWriteDone = True
 
-if st.checkbox('Show Columns'):
-    columnDisplay = True
-else:
-    columnDisplay = False
+
 
 
 if st.button('Read file to df'):
