@@ -154,8 +154,8 @@ def draw_chart(data, selected):
     #data = data.set_index('Date') #created before
     #dfc = data.columns
     #st.write(dfc)
-    source = data[['Col0','Col1']]
-    #source = data[option]
+    #source = data[['Col0','Col1']]
+    source = data[selected]
     st.line_chart(source) #, width = 2000, height = 400)
 
 # create some dataframe
