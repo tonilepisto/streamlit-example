@@ -153,18 +153,18 @@ dfError = False
 def readDataColumns(selected):
     data = pd.read_pickle('export.pkl')
     data = data.set_index('Date')
+    columnNames = data.columns
     dataOut = data[selected]
-    dfc = data.columns
-    return dataOut,dfc
+    return dataOut, columnNames
 
 @st.cache
-def draw_chart(data, selected):
-    #data = pd.read_pickle('export.pkl')
-    #data = data.set_index('Date')
-    #dfc = data.columns
+def draw_chart():
+    data = pd.read_pickle('export.pkl')
+    data = data.set_index('Date')
+    filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
     #st.write(dfc)
     #source = data[['Col0','Col1']]
-    source = data[selected]
+    source = data[filtered]
     st.line_chart(source) #, width = 2000, height = 400)
 
 # create some dataframe
@@ -177,12 +177,12 @@ def draw_chart(data, selected):
 
 #st.write(data[filtered.mean()])
 
-#if st.button('Draw chart'):
-        #draw_chart(data,selectedColumns)
+if st.button('Draw chart'):
+        draw_chart()
 
-result = readDataColumns(selectedColumns)
-draw_chart(result[0],selectedColumns)
-selectedColumns = st.multiselect("Filter columns", options=list(result[1]), default=None)
+#result = readDataColumns(selectedColumns)
+#draw_chart(result[0],selectedColumns)
+#selectedColumns = st.multiselect("Filter columns", options=list(result[1]), default=None)
 
 left_column, right_column = st.columns(2)
 # You can use a column just like st.sidebar:
