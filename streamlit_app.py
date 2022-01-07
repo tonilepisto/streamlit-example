@@ -172,10 +172,6 @@ def draw_chart(data,filtered):
     source = data[filtered]
     st.line_chart(source) #, width = 2000, height = 400)
 
-@st.cache
-def updateFilter(filterSelection):
-    filtered = filterSelection
-    return filtered
 
 # create some dataframe
 #dfFilter = pd.DataFrame({f"f_{i}": list(range(100)) for i in range(10)})
@@ -192,8 +188,9 @@ data = readData()
 columns = readColumns(data)
 filterSelection = st.multiselect("Filter columns", options=list(data.columns), default=None)
 if st.button('Update filter to line chart'):
-    filtered = updateFilter(filterSelection)
-    
+    filterSelection.to_pickle('filter.pkl')
+
+filtered = pd.read_pickle('filter.pkl')    
 draw_chart(data,filtered)
 #selectedColumns = st.multiselect("Filter columns", options=list(result[1]), default=None)
 
