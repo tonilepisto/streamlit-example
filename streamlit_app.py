@@ -58,15 +58,15 @@ def process_file(file):
     dfc = a_1.columns
     #dfc2 = list(a_1)
     dfc2 = list(a_1.columns.values)
-    if columnDisplay:
-        st.write('Following columns imported:')
-        st.write(dfc)
+    #if columnDisplay:
+        #st.write('Following columns imported:')
+        #st.write(dfc)
     #st.write('Following columns imported:')
     #st.write(dfc)
     a_1.to_csv('export.csv',index=False,header=True) #Removed exports !!!
     a_1.to_pickle('export.pkl')
-    #data = pd.read_pickle('export.pkl')
-    #data = data.set_index('Date')
+    data = pd.read_pickle('export.pkl')
+    data = data.set_index('Date')
     dataWriteDone = True
     return data
 
