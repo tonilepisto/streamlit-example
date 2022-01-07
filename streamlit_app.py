@@ -149,7 +149,7 @@ dfError = False
     #})
     #dfError = True
 
-def draw_chart(option):
+def draw_chart(data, selected):
     #data = pd.read_pickle('export.pkl') # created before
     #data = data.set_index('Date') #created before
     #dfc = data.columns
@@ -164,10 +164,11 @@ data = pd.read_pickle('export.pkl')
 data = data.set_index('Date')
 #filtered = st.multiselect("Filter columns", options=list(data.columns), default=list(data.columns))
 filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
+selectedColumns = filtered
 st.write(data[filtered])
 
 if st.button('Draw chart'):
-        draw_chart(option)
+        draw_chart(data,selectedColumns)
     
 df1 = pd.DataFrame(
     np.random.randn(50, 20),
