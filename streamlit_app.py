@@ -165,7 +165,7 @@ data = data.set_index('Date')
 #filtered = st.multiselect("Filter columns", options=list(data.columns), default=list(data.columns))
 filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
 selectedColumns = filtered
-st.write(data[filtered])
+st.write(data[filtered.mean()])
 
 if st.button('Draw chart'):
         draw_chart(data,selectedColumns)
