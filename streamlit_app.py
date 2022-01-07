@@ -162,7 +162,8 @@ def draw_chart(option):
 #dfFilter = pd.DataFrame({f"f_{i}": list(range(100)) for i in range(10)})
 data = pd.read_pickle('export.pkl')
 data = data.set_index('Date')
-filtered = st.multiselect("Filter columns", options=list(data.columns), default=list(data.columns))
+#filtered = st.multiselect("Filter columns", options=list(data.columns), default=list(data.columns))
+filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
 st.write(data[filtered])
 
 if st.button('Draw chart'):
