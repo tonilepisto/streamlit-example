@@ -11,6 +11,7 @@ import streamlit as st
 import datetime
 from dateutil import tz
 import time
+import pickle
 from bokeh.plotting import figure
 
 """
@@ -192,7 +193,9 @@ if st.button('Update filter to line chart'):
     pickle.dump(filterSelection, open_file)
     open_file.close()
 
-filtered = pd.read_pickle('filter.pkl')    
+open_file = open(file_name, "rb")
+filtered = pickle.load(open_file)
+open_file.close()
 draw_chart(data,filtered)
 #selectedColumns = st.multiselect("Filter columns", options=list(result[1]), default=None)
 
