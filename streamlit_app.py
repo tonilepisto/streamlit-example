@@ -68,7 +68,6 @@ def process_file(file):
     #data = pd.read_pickle('export.pkl')
     #data = data.set_index('Date')
     dataWriteDone = True
-    return dfc
 
 if st.checkbox('Show Columns'):
     columnDisplay = True
@@ -77,7 +76,7 @@ else:
 
 
 if st.button('Read file to df'):
-    columnNames = process_file(file)
+    process_file(file)
 
 
 
@@ -155,8 +154,10 @@ def readDataColumns(selected):
     data = pd.read_pickle('export.pkl')
     data = data.set_index('Date')
     dataOut = data[selected]
-    return dataOut
+    dfc = data.columns
+    return dataOut,dfc
 
+@st.cache
 def draw_chart(data, selected):
     #data = pd.read_pickle('export.pkl')
     #data = data.set_index('Date')
@@ -172,15 +173,16 @@ def draw_chart(data, selected):
 #data = data.set_index('Date')
 #filtered = st.multiselect("Filter columns", options=list(data.columns), default=list(data.columns))
 #filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
-filtered = st.multiselect("Filter columns", options=list(columnNames), default=None)
+
+filtered = st.multiselect("Filter columns", options=list(result[1]), default=None)
 selectedColumns = filtered
 #st.write(data[filtered.mean()])
 
 #if st.button('Draw chart'):
         #draw_chart(data,selectedColumns)
 
-data = readDataColumns(selectedColumns)
-draw_chart(data,selectedColumns)
+result = readDataColumns(selectedColumns)
+draw_chart(result[0],selectedColumns)
 
 left_column, right_column = st.columns(2)
 # You can use a column just like st.sidebar:
