@@ -68,6 +68,7 @@ def process_file(file):
     #data = pd.read_pickle('export.pkl')
     #data = data.set_index('Date')
     dataWriteDone = True
+    return dfc
 
 if st.checkbox('Show Columns'):
     columnDisplay = True
@@ -76,7 +77,7 @@ else:
 
 
 if st.button('Read file to df'):
-    data = process_file(file)
+    columnNames = process_file(file)
 
 
 
@@ -149,10 +150,16 @@ dfError = False
     #})
     #dfError = True
 
+@st.cache
+def readDataColumns(selected):
+    data = pd.read_pickle('export.pkl')
+    data = data.set_index('Date')
+    dataOut = data[selected]
+    return dataOut
 
 def draw_chart(data, selected):
-    #data = pd.read_pickle('export.pkl') # created before
-    #data = data.set_index('Date') #created before
+    #data = pd.read_pickle('export.pkl')
+    #data = data.set_index('Date')
     #dfc = data.columns
     #st.write(dfc)
     #source = data[['Col0','Col1']]
@@ -161,15 +168,19 @@ def draw_chart(data, selected):
 
 # create some dataframe
 #dfFilter = pd.DataFrame({f"f_{i}": list(range(100)) for i in range(10)})
-data = pd.read_pickle('export.pkl')
-data = data.set_index('Date')
+#data = pd.read_pickle('export.pkl')
+#data = data.set_index('Date')
 #filtered = st.multiselect("Filter columns", options=list(data.columns), default=list(data.columns))
-filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
+#filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
+filtered = st.multiselect("Filter columns", options=list(columnNames), default=None)
 selectedColumns = filtered
 #st.write(data[filtered.mean()])
 
-if st.button('Draw chart'):
-        draw_chart(data,selectedColumns)
+#if st.button('Draw chart'):
+        #draw_chart(data,selectedColumns)
+
+data = readDataColumns(selectedColumns)
+draw_chart(data,selectedColumns)
 
 left_column, right_column = st.columns(2)
 # You can use a column just like st.sidebar:
@@ -186,11 +197,11 @@ with right_column:
 latest_iteration = st.empty()
 bar = st.progress(0)
 
-for i in range(100):
+#for i in range(100):
   # Update the progress bar with each iteration.
-  latest_iteration.text(f'Iteration {i+1}')
-  bar.progress(i + 1)
-  time.sleep(0.1)
+  #latest_iteration.text(f'Iteration {i+1}')
+  #bar.progress(i + 1)
+  #time.sleep(0.1)
 
 '...and now we\'re done!'
 
