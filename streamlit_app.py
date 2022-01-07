@@ -158,9 +158,9 @@ def draw_chart(option):
     st.line_chart(source) #, width = 2000, height = 400)
 
 # create some dataframe
-dfFilter = pd.DataFrame({f"f_{i}": list(range(100)) for i in range(10)})
-filtered = st.multiselect("Filter columns", options=list(dfFilter.columns), default=list(dfFilter.columns))
-st.write(dfFilter[filtered])
+#dfFilter = pd.DataFrame({f"f_{i}": list(range(100)) for i in range(10)})
+filtered = st.multiselect("Filter columns", options=list(data.columns), default=list(data.columns))
+st.write(data[filtered])
 
 if st.button('Draw chart'):
         draw_chart(option)
