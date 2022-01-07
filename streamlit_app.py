@@ -189,7 +189,7 @@ columns = readColumns(data)
 filterSelection = st.multiselect("Filter columns", options=list(data.columns), default=None)
 if st.button('Update filter to line chart'):
     open_file = open(file_name, "wb")
-    pickle.dump(sample_list, open_file)
+    pickle.dump(filterSelection, open_file)
     open_file.close()
 
 filtered = pd.read_pickle('filter.pkl')    
