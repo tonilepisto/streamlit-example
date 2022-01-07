@@ -244,16 +244,16 @@ a = st.sidebar.selectbox('Choose a restaurant', options, format_func=lambda x: d
 
 st.write(a)
 
-@st.cache
-def convert_df(df):
+#@st.cache
+#def convert_df(df):
      # IMPORTANT: Cache the conversion to prevent computation on every rerun
-     return df.to_csv().encode('utf-8')
+#     return df.to_csv().encode('utf-8')
 
-csvExport = convert_df(data)
+#csvExport = convert_df(data)
 
-st.download_button(
-     label="Download data as CSV",
-     data=csvExport,
-     file_name='csvExport.csv',
-     mime='text/csv',
- )
+#st.download_button(
+#     label="Download data as CSV",
+#     data=csvExport,
+#     file_name='csvExport.csv',
+#     mime='text/csv',
+# )
