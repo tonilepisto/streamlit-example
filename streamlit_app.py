@@ -168,7 +168,7 @@ def readColumns(data):
      columnNames = data.columns
      return columnNames
 
-@st.cache
+#@st.cache
 def draw_chart(data,filtered):
     #data = pd.read_pickle('export.pkl')
     #data = data.set_index('Date')
@@ -185,8 +185,8 @@ def draw_chart(data,filtered):
 #filtered = st.multiselect("Filter columns", options=list(data.columns), default=None)
 
 
-if st.button('Draw chart'):
-        draw_chart(filtered)
+#if st.button('Draw chart'):
+        #draw_chart(filtered)
 
 data = readData()
 columns = readColumns(data)
